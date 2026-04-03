@@ -5,16 +5,16 @@ KCH Radar is a discovery-first local website for Kirkintilloch and nearby towns.
 ## What it is
 - local discovery radar
 - events and opportunities frontend
-- future Google Sheet + n8n powered site
+- Google Sheet powered site-in-progress
 
 ## Current stack
 - React
 - Vite
 - modular components
-- mock queue data first
+- Google Apps Script JSON bridge
 
 ## Planned flow
-Google Sheet -> Weekly Post Queue -> website -> Facebook Page
+Google Sheet -> Website Feed -> Apps Script JSON -> website -> Facebook Page
 
 ## Core homepage sections
 - Discovery Radar
@@ -25,7 +25,6 @@ Google Sheet -> Weekly Post Queue -> website -> Facebook Page
 - Submit Signal Form
 
 ## Next steps
-- connect Vercel
-- replace placeholders with real UI
-- add mock queue data source
-- later connect Google Sheet and n8n
+- continue replacing mock sections with live feed data
+- expand Website Feed and supporting tabs
+- later add publish automation

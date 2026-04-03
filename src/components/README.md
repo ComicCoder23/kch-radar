@@ -14,7 +14,7 @@ This folder contains reusable UI building blocks for the KCH Radar frontend.
 Each section should stay isolated so it can later be powered by:
 - mock data
 - Google Sheet JSON
-- n8n webhook feeds
+- Apps Script feed
 - API routes
 
 ## Expansion notes
