@@ -27,6 +27,7 @@ function normalizeFeedItem(item) {
     date: item.date || '',
     note: item.shortCopy || item.notes || '',
     link: item.mainLink || '',
+    cardType: item.cardType || '',
   };
 }
 
@@ -51,6 +52,13 @@ export default function App() {
     loadFeed();
   }, []);
 
+  const liveCards = useMemo(() => {
+    if (feedData?.cards?.length) {
+      return feedData.cards.map(normalizeFeedItem);
+    }
+    return [];
+  }, [feedData]);
+
   const featuredItems = useMemo(() => {
     if (feedData?.featured?.length) {
       return feedData.featured.map(normalizeFeedItem);
@@ -64,6 +72,10 @@ export default function App() {
       ? 'Fallback mock data'
       : 'Loading live feed...';
 
+  const categorySourceLabel = liveCards.length
+    ? `Live Google Sheet feed · ${liveCards.length} total live card${liveCards.length === 1 ? '' : 's'}`
+    : 'Static browse taxonomy';
+
   return (
     <main style={{ background: '#f8fafc', minHeight: '100vh' }}>
       <div style={pageStyle}>
@@ -71,7 +83,7 @@ export default function App() {
         <FeaturedNow items={featuredItems} sourceLabel={featuredSourceLabel} />
         <HiddenOpportunities />
         <LocalSignalsFeed />
-        <CategoryGrid />
+        <CategoryGrid liveCards={liveCards} sourceLabel={categorySourceLabel} />
         <SubmitSignalForm />
       </div>
     </main>

@@ -4,7 +4,7 @@ This folder contains the content layer for KCH Radar.
 
 ## Current source
 - mockQueueData.js
-- live Apps Script feed for featured items
+- live Apps Script feed for featured items and category summaries
 
 ## Future source of truth
 Later this data will be replaced or expanded by:
