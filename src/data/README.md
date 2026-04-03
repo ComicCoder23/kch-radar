@@ -4,14 +4,13 @@ This folder contains the content layer for KCH Radar.
 
 ## Current source
 - mockQueueData.js
-
-This acts as the temporary content source before live integration.
+- live Apps Script feed for featured items
 
 ## Future source of truth
-Later this data will be replaced or hydrated by:
+Later this data will be replaced or expanded by:
 - Google Sheet queue JSON
-- n8n webhook payloads
-- Vercel API routes
+- more Website Feed sections
+- API routes
 - cache layers
 
 ## Main data groups
@@ -21,5 +20,4 @@ Later this data will be replaced or hydrated by:
 - categories
 
 ## Best practice
-UI components should consume data objects from this folder instead of hardcoded JSX.
-This keeps the frontend easy to scale and easy to connect to automation later.
+UI components should consume data objects from this folder or from normalized live feed data instead of hardcoded JSX.
