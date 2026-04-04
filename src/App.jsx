@@ -66,6 +66,22 @@ export default function App() {
     return mockQueueData.featured;
   }, [feedData]);
 
+  const liveOpportunities = useMemo(() => {
+    const filtered = liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'opportunity');
+    if (filtered.length) {
+      return filtered;
+    }
+    return mockQueueData.opportunities;
+  }, [liveCards]);
+
+  const liveSignals = useMemo(() => {
+    const filtered = liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'signal');
+    if (filtered.length) {
+      return filtered;
+    }
+    return mockQueueData.localSignals;
+  }, [liveCards]);
+
   const featuredSourceLabel = feedData?.featured?.length
     ? `Live Google Sheet feed · ${feedData.featured.length} featured item${feedData.featured.length === 1 ? '' : 's'}`
     : feedError
@@ -76,13 +92,21 @@ export default function App() {
     ? `Live Google Sheet feed · ${liveCards.length} total live card${liveCards.length === 1 ? '' : 's'}`
     : 'Static browse taxonomy';
 
+  const opportunitySourceLabel = liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'opportunity').length
+    ? `Live Google Sheet feed · ${liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'opportunity').length} opportunity item${liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'opportunity').length === 1 ? '' : 's'}`
+    : 'Static opportunity layer';
+
+  const signalSourceLabel = liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'signal').length
+    ? `Live Google Sheet feed · ${liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'signal').length} signal item${liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'signal').length === 1 ? '' : 's'}`
+    : 'Static signal layer';
+
   return (
     <main style={{ background: '#f8fafc', minHeight: '100vh' }}>
       <div style={pageStyle}>
         <DiscoveryRadar />
         <FeaturedNow items={featuredItems} sourceLabel={featuredSourceLabel} />
-        <HiddenOpportunities />
-        <LocalSignalsFeed />
+        <HiddenOpportunities items={liveOpportunities} sourceLabel={opportunitySourceLabel} />
+        <LocalSignalsFeed items={liveSignals} sourceLabel={signalSourceLabel} />
         <CategoryGrid liveCards={liveCards} sourceLabel={categorySourceLabel} />
         <SubmitSignalForm />
       </div>
