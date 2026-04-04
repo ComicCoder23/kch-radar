@@ -9,7 +9,9 @@ export const mockQueueData = {
       note: 'Lanternhouse theatre pick',
       shortCopy: 'Macbeth at Lanternhouse on Sunday 5 April.',
       priority: 'High',
-      link: 'https://lanternhousearts.org/events/macbeth/'
+      link: 'https://lanternhousearts.org/events/macbeth/',
+      badge: 'Top Pick',
+      ctaText: 'View details'
     },
     {
       id: 'findlay-napier',
@@ -20,7 +22,9 @@ export const mockQueueData = {
       note: 'Lanternhouse folk club pick',
       shortCopy: 'Findlay Napier live at Lanternhouse on Thursday 9 April.',
       priority: 'High',
-      link: 'https://lanternhousearts.org/events/cumbernauld-folk-club-presents-findlay-napier-2/'
+      link: 'https://lanternhousearts.org/events/cumbernauld-folk-club-presents-findlay-napier-2/',
+      badge: 'Featured',
+      ctaText: 'View details'
     },
     {
       id: 'bubble-show',
@@ -31,20 +35,22 @@ export const mockQueueData = {
       note: 'Town Hall family pick',
       shortCopy: 'Bubble Show at Kirkintilloch Town Hall on 19 April.',
       priority: 'High',
-      link: 'https://www.edlc.co.uk/whats-on/paris-bubbles-presents-the-ultimate-bubble-show/'
+      link: 'https://www.edlc.co.uk/whats-on/paris-bubbles-presents-the-ultimate-bubble-show/',
+      badge: 'Family Pick',
+      ctaText: 'View details'
     }
   ],
   opportunities: [
-    { id: 'openings', title: 'Openings', note: 'Open mics, auditions, calls for acts, guest spots.' },
-    { id: 'collaborators', title: 'Collaborators', note: 'Comedians, theatre makers, musicians, community partners.' },
-    { id: 'media', title: 'Media', note: 'Local radio, community pages, newsletters, PR angles.' },
-    { id: 'community-growth', title: 'Community Growth', note: 'Church groups, recovery spaces, volunteer and service routes.' },
-    { id: 'new-routes', title: 'New Routes', note: 'Retreat leaders, organisers, venue and partnership leads.' }
+    { id: 'openings', title: 'Openings', note: 'Open mics, auditions, calls for acts, guest spots.', badge: 'Open', ctaText: 'Explore' },
+    { id: 'collaborators', title: 'Collaborators', note: 'Comedians, theatre makers, musicians, community partners.', badge: 'Connect', ctaText: 'Explore' },
+    { id: 'media', title: 'Media', note: 'Local radio, community pages, newsletters, PR angles.', badge: 'PR Angle', ctaText: 'Explore' },
+    { id: 'community-growth', title: 'Community Growth', note: 'Church groups, recovery spaces, volunteer and service routes.', badge: 'Community', ctaText: 'Explore' },
+    { id: 'new-routes', title: 'New Routes', note: 'Retreat leaders, organisers, venue and partnership leads.', badge: 'Route', ctaText: 'Explore' }
   ],
   localSignals: [
-    { id: 'posters-boards', title: 'Posters & Boards', note: 'Church boards, library posters, pub gig flyers, roadside banners and hall signs.' },
-    { id: 'cafe-windows', title: 'Café & Venue Windows', note: 'Flyers in café windows, venue doors, comedy notices, theatre and music lead signals.' },
-    { id: 'travel-finds', title: 'Travel Finds', note: 'Things spotted while working, driving, passing through towns, or exploring neighbouring areas.' }
+    { id: 'posters-boards', title: 'Posters & Boards', note: 'Church boards, library posters, pub gig flyers, roadside banners and hall signs.', badge: 'Scout', ctaText: 'Spot more' },
+    { id: 'cafe-windows', title: 'Café & Venue Windows', note: 'Flyers in café windows, venue doors, comedy notices, theatre and music lead signals.', badge: 'Scout', ctaText: 'Spot more' },
+    { id: 'travel-finds', title: 'Travel Finds', note: 'Things spotted while working, driving, passing through towns, or exploring neighbouring areas.', badge: 'Scout', ctaText: 'Spot more' }
   ],
   categories: [
     { id: 'featured', title: 'Featured', intro: 'The strongest hand-picked items from the weekly queue.' },

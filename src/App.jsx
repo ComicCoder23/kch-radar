@@ -25,10 +25,27 @@ function normalizeFeedItem(item) {
     title: item.title || '',
     town: item.town || '',
     date: item.date || '',
-    note: item.shortCopy || item.notes || '',
-    link: item.mainLink || '',
+    note: item.shortCopy || item.notes || item.note || '',
+    link: item.mainLink || item.link || '',
     cardType: item.cardType || '',
+    section: item.section || '',
+    sortOrder: Number(item.sortOrder || 9999),
+    badge: item.badge || '',
+    ctaText: item.ctaText || 'View details',
+    activeFrom: item.activeFrom || '',
+    activeUntil: item.activeUntil || '',
   };
+}
+
+function sortByOrder(items) {
+  return [...items].sort((a, b) => a.sortOrder - b.sortOrder);
+}
+
+function isActive(item) {
+  const today = new Date().toISOString().slice(0, 10);
+  const startsOk = !item.activeFrom || item.activeFrom <= today;
+  const endsOk = !item.activeUntil || item.activeUntil >= today;
+  return startsOk && endsOk;
 }
 
 export default function App() {
@@ -54,36 +71,32 @@ export default function App() {
 
   const liveCards = useMemo(() => {
     if (feedData?.cards?.length) {
-      return feedData.cards.map(normalizeFeedItem);
+      return feedData.cards.map(normalizeFeedItem).filter(isActive);
     }
     return [];
   }, [feedData]);
 
   const featuredItems = useMemo(() => {
-    if (feedData?.featured?.length) {
-      return feedData.featured.map(normalizeFeedItem);
-    }
+    const bySection = sortByOrder(liveCards.filter((card) => card.section === 'Featured Now'));
+    if (bySection.length) return bySection;
+    if (feedData?.featured?.length) return feedData.featured.map(normalizeFeedItem);
     return mockQueueData.featured;
-  }, [feedData]);
+  }, [feedData, liveCards]);
 
   const liveOpportunities = useMemo(() => {
-    const filtered = liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'opportunity');
-    if (filtered.length) {
-      return filtered;
-    }
+    const filtered = sortByOrder(liveCards.filter((card) => card.section === 'Hidden Opportunities' || (card.cardType || '').toLowerCase() === 'opportunity'));
+    if (filtered.length) return filtered;
     return mockQueueData.opportunities;
   }, [liveCards]);
 
   const liveSignals = useMemo(() => {
-    const filtered = liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'signal');
-    if (filtered.length) {
-      return filtered;
-    }
+    const filtered = sortByOrder(liveCards.filter((card) => card.section === 'Local Signals Feed' || (card.cardType || '').toLowerCase() === 'signal'));
+    if (filtered.length) return filtered;
     return mockQueueData.localSignals;
   }, [liveCards]);
 
-  const featuredSourceLabel = feedData?.featured?.length
-    ? `Live Google Sheet feed · ${feedData.featured.length} featured item${feedData.featured.length === 1 ? '' : 's'}`
+  const featuredSourceLabel = featuredItems.length && liveCards.length
+    ? `Live Google Sheet feed · ${featuredItems.length} featured item${featuredItems.length === 1 ? '' : 's'}`
     : feedError
       ? 'Fallback mock data'
       : 'Loading live feed...';
@@ -92,12 +105,12 @@ export default function App() {
     ? `Live Google Sheet feed · ${liveCards.length} total live card${liveCards.length === 1 ? '' : 's'}`
     : 'Static browse taxonomy';
 
-  const opportunitySourceLabel = liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'opportunity').length
-    ? `Live Google Sheet feed · ${liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'opportunity').length} opportunity item${liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'opportunity').length === 1 ? '' : 's'}`
+  const opportunitySourceLabel = liveCards.filter((card) => card.section === 'Hidden Opportunities' || (card.cardType || '').toLowerCase() === 'opportunity').length
+    ? `Live Google Sheet feed · ${liveCards.filter((card) => card.section === 'Hidden Opportunities' || (card.cardType || '').toLowerCase() === 'opportunity').length} opportunity item${liveCards.filter((card) => card.section === 'Hidden Opportunities' || (card.cardType || '').toLowerCase() === 'opportunity').length === 1 ? '' : 's'}`
     : 'Static opportunity layer';
 
-  const signalSourceLabel = liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'signal').length
-    ? `Live Google Sheet feed · ${liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'signal').length} signal item${liveCards.filter((card) => (card.cardType || '').toLowerCase() === 'signal').length === 1 ? '' : 's'}`
+  const signalSourceLabel = liveCards.filter((card) => card.section === 'Local Signals Feed' || (card.cardType || '').toLowerCase() === 'signal').length
+    ? `Live Google Sheet feed · ${liveCards.filter((card) => card.section === 'Local Signals Feed' || (card.cardType || '').toLowerCase() === 'signal').length} signal item${liveCards.filter((card) => card.section === 'Local Signals Feed' || (card.cardType || '').toLowerCase() === 'signal').length === 1 ? '' : 's'}`
     : 'Static signal layer';
 
   return (
