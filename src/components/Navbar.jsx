@@ -39,7 +39,7 @@ export default function Navbar() {
             fontSize: '18px'
           }}>K</div>
           <div style={{ fontWeight: 800, fontSize: '1.25rem', color: '#0f172a', letterSpacing: '-0.02em' }}>
-            KCH <span style={{ color: '#2563eb' }}>Radar</span>
+            Kirky Hub <span style={{ color: '#2563eb' }}>| G66 Radar</span>
           </div>
         </Link>
 
