@@ -1,0 +1,62 @@
+.community-notice-card {
+  background: var(--kch-bg-card);
+  border: 1px solid var(--kch-border);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.community-notice-card:hover {
+  border-color: var(--kch-accent);
+}
+
+.notice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.notice-category {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--kch-accent);
+  background: rgba(var(--kch-accent-rgb), 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.notice-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--kch-text-sub);
+}
+
+.notice-title {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--kch-primary-text);
+}
+
+.notice-content {
+  color: var(--kch-text-sub);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.notice-trust-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--kch-border);
+  color: var(--kch-primary-text);
+  display: inline-block;
+}
