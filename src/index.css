@@ -7,7 +7,7 @@
   --kch-page-bg: #fdfdfc;
   --kch-card-bg: #ffffff;
   --kch-primary-text: #1a1a1a;
-  --kch-text-sub: #666666;
+  --kch-text-sub: #595959;
   --kch-border: #e0e0e0;
   --radar-glow: var(--kch-sandstone);
   --grid-color: rgba(200, 200, 200, 0.3);
@@ -25,6 +25,11 @@ body {
   color: var(--kch-primary-text);
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+}
+
+:focus-visible {
+  outline: 2px solid var(--kch-sandstone);
+  outline-offset: 2px;
 }
 
 code, .mono {
