@@ -15,17 +15,21 @@ export default function LocalSignalsFeed({ items = [], sourceLabel = '', onItemC
   const cards = items.map(normalizeSignal);
 
   return (
-    <section style={{ padding: '24px 0' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '16px', marginBottom: '24px' }}>
-        <div>
-          <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--kch-text-sub)', fontWeight: 600 }}>
+    <section style={{ padding: '24px 16px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
+        <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--kch-text-sub)', fontWeight: 600 }}>
              Local Discovery
-          </div>
-          <h2 style={{ margin: '6px 0 0', fontSize: '32px', fontWeight: 800 }}>Signals Feed</h2>
         </div>
+        <h2 style={{ margin: 0, fontSize: '32px', fontWeight: 800 }}>Signals Feed</h2>
         <div style={{ color: 'var(--kch-text-sub)', fontSize: '13px' }}>{sourceLabel}</div>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+        gap: '20px',
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}>
         {cards.map((item) => (
           <article 
             key={item.id} 
@@ -58,8 +62,6 @@ export default function LocalSignalsFeed({ items = [], sourceLabel = '', onItemC
                 backgroundColor: 'var(--kch-primary-text)',
                 color: 'white',
                 border: 'none',
-                padding: '8px 16px',
-                fontSize: '12px',
                 cursor: 'pointer',
                 fontWeight: 600
               }}

@@ -187,4 +187,10 @@ button:hover {
   .grid-form {
     grid-template-columns: 1fr !important;
   }
+  
+  /* Mobile touch targets */
+  button, .btn-primary, .btn-secondary, .badge {
+    min-height: 44px;
+    padding: 12px 20px;
+  }
 }
