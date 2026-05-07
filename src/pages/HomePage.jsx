@@ -5,6 +5,7 @@ import HiddenOpportunities from '../components/HiddenOpportunities';
 import LocalSignalsFeed from '../components/LocalSignalsFeed';
 import CategoryGrid from '../components/CategoryGrid';
 import LocalGuides from '../components/LocalGuides';
+import WeeklyDigest from '../components/WeeklyDigest';
 import SubmitSignalForm from '../components/SubmitSignalForm';
 import { mockQueueData } from '../data/mockQueueData';
 
@@ -140,6 +141,7 @@ export default function HomePage() {
       </div>
       <CategoryGrid liveCards={liveCards} sourceLabel={categorySourceLabel} />
       <LocalGuides />
+      <WeeklyDigest />
       
       <div style={{ marginTop: '80px', display: 'flex', flexDirection: 'column', gap: '60px' }}>
         <SubmitSignalForm />

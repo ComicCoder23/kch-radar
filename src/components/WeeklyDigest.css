@@ -1,0 +1,8 @@
+.weekly-digest-section {
+  transition: opacity 0.3s ease;
+}
+
+.digest-item:hover {
+  background: var(--kch-bg-subtle) !important;
+  border-color: var(--kch-canal-blue) !important;
+}
