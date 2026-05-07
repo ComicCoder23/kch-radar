@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import SignalsPage from './pages/SignalsPage';
 import GuidesPage from './pages/GuidesPage';
 import SubmitPage from './pages/SubmitPage';
+import VenuesPage from './pages/VenuesPage';
 import ProfilePage from './pages/ProfilePage';
 import SuccessPage from './pages/SuccessPage';
 import CancelPage from './pages/CancelPage';
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/signals" element={<SignalsPage />} />
           <Route path="/guides" element={<GuidesPage />} />
+          <Route path="/venues" element={<VenuesPage />} />
           <Route path="/submit" element={<SubmitPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/success" element={<SuccessPage />} />
