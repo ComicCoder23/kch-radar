@@ -8,6 +8,8 @@ function normalizeSignal(item, index) {
     title: item.title || 'Untitled Signal',
     note: item.description || '',
     badge: item.category || 'Signal',
+    trustLevel: item.trustLevel || 'Verified',
+    freshnessLevel: item.freshnessLevel || 'Just now',
     date: item.freshnessLevel || 'Just now',
     ctaText: 'INTERCEPT',
     link: '#',
@@ -89,8 +91,10 @@ export default function LocalSignalsFeed({ items = seedSignals, sourceLabel = 'K
             >
               <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{item.title.substring(0, 4)}</div>
 
-              <div style={{ marginBottom: '8px' }}>
+              <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', flexWrap: 'wrap' }}>
                 <span className={`badge ${item.badge.toLowerCase().includes('canal') ? 'badge-canal' : item.badge.toLowerCase().includes('campsie') ? 'badge-campsie' : item.badge.toLowerCase().includes('sandstone') ? 'badge-sandstone' : ''}`}>{item.badge}</span>
+                <span className="badge" style={{ fontSize: '10px' }}>{item.trustLevel}</span>
+                <span className="badge" style={{ fontSize: '10px' }}>{item.freshnessLevel}</span>
               </div>
 
               <h3 style={{ margin: '0 0 8px', fontSize: '18px', fontWeight: 700, color: 'var(--kch-primary-text)' }}>{item.title}</h3>
