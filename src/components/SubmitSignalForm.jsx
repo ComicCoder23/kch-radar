@@ -6,6 +6,7 @@ export default function SubmitSignalForm() {
   const { user } = useUser();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [touched, setTouched] = useState({});
   const [formData, setFormData] = useState({
     title: "",
     note: "",
@@ -42,6 +43,15 @@ export default function SubmitSignalForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleBlur = (e) => {
+    setTouched(prev => ({ ...prev, [e.target.name]: true }));
+  };
+
+  const getClassName = (field) => {
+    if (!touched[field]) return "";
+    return formData[field] ? "input-success" : "input-error";
+  };
+
   const inputStyle = { 
     padding: '12px', 
     borderRadius: '4px', 
@@ -76,21 +86,21 @@ export default function SubmitSignalForm() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '24px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px', '@media (min-width: 640px)': { gridTemplateColumns: '1fr 1fr' } }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <label style={labelStyle}>SIGNAL TITLE</label>
-                  <input type="text" name="title" placeholder="e.g. Community Garden Day" required value={formData.title} onChange={handleChange} style={inputStyle} />
+                  <label style={labelStyle}>SIGNAL TITLE *</label>
+                  <input type="text" name="title" className={getClassName('title')} placeholder="e.g. Community Garden Day" required value={formData.title} onChange={handleChange} onBlur={handleBlur} style={inputStyle} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <label style={labelStyle}>LOCATION / ADDRESS</label>
-                  <input type="text" name="address" placeholder="e.g. 123 Cowgate" required value={formData.address} onChange={handleChange} style={inputStyle} />
+                  <label style={labelStyle}>LOCATION / ADDRESS *</label>
+                  <input type="text" name="address" className={getClassName('address')} placeholder="e.g. 123 Cowgate" required value={formData.address} onChange={handleChange} onBlur={handleBlur} style={inputStyle} />
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px', '@media (min-width: 640px)': { gridTemplateColumns: '1fr 1fr 1fr' } }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <label style={labelStyle}>DATE</label>
-                  <input type="text" name="date" placeholder="e.g. 2026-05-10" required value={formData.date} onChange={handleChange} style={inputStyle} />
+                  <label style={labelStyle}>DATE *</label>
+                  <input type="text" name="date" className={getClassName('date')} placeholder="e.g. 2026-05-10" required value={formData.date} onChange={handleChange} onBlur={handleBlur} style={inputStyle} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <label style={labelStyle}>START TIME</label>
@@ -103,8 +113,8 @@ export default function SubmitSignalForm() {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label style={labelStyle}>INTEL / DESCRIPTION</label>
-                <textarea name="note" placeholder="Provide event details here..." required value={formData.note} onChange={handleChange} style={{ ...inputStyle, minHeight: '120px' }} />
+                <label style={labelStyle}>INTEL / DESCRIPTION *</label>
+                <textarea name="note" className={getClassName('note')} placeholder="Provide event details here..." required value={formData.note} onChange={handleChange} onBlur={handleBlur} style={{ ...inputStyle, minHeight: '120px' }} />
               </div>
 
               <button 
@@ -112,7 +122,7 @@ export default function SubmitSignalForm() {
                 disabled={loading}
                 style={{ 
                   padding: '16px', 
-                  background: 'var(--kch-primary)', 
+                  background: loading ? '#666' : 'var(--kch-primary)', 
                   color: '#fff', 
                   border: 'none', 
                   borderRadius: '4px', 
