@@ -1,6 +1,6 @@
 import './CommunityNoticeCard.css';
 
-export default function CommunityNoticeCard({ title, content, trustLevel, lastVerifiedAt, category }) {
+export default function CommunityNoticeCard({ title, content, trustLevel, lastVerifiedAt, category, source }) {
   return (
     <article className="community-notice-card radar-card">
       <div className="notice-header">
@@ -18,6 +18,7 @@ export default function CommunityNoticeCard({ title, content, trustLevel, lastVe
         <span className="notice-trust-badge">
           Trust Level: {trustLevel || 'N/A'}
         </span>
+        {source && <div className="notice-source">Source: {source}</div>}
       </div>
     </article>
   );

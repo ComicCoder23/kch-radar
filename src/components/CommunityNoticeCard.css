@@ -51,6 +51,13 @@
   flex: 1;
 }
 
+.notice-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
 .notice-trust-badge {
   font-size: 12px;
   font-weight: 600;
@@ -59,4 +66,11 @@
   background: var(--kch-border);
   color: var(--kch-primary-text);
   display: inline-block;
+}
+
+.notice-source {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--kch-text-sub);
+  margin-left: auto;
 }
