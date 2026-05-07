@@ -1,3 +1,4 @@
+import { useState, useMemo } from 'react';
 import seedSignals from '../data/seed-signals.json';
 
 function normalizeSignal(item, index) {
@@ -14,7 +15,30 @@ function normalizeSignal(item, index) {
 }
 
 export default function LocalSignalsFeed({ items = seedSignals, sourceLabel = 'KCH Seed Database', onItemClick, loading = false }) {
-  const cards = items.map(normalizeSignal);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('All');
+
+  const categories = useMemo(() => {
+    const cats = new Set(items.map(item => item.category || 'Uncategorized'));
+    return ['All', ...Array.from(cats)];
+  }, [items]);
+
+  const filteredCards = useMemo(() => {
+    let result = items.map(normalizeSignal);
+    
+    if (searchTerm) {
+      result = result.filter(item => 
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        item.note.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    if (categoryFilter !== 'All') {
+      result = result.filter(item => item.badge === categoryFilter);
+    }
+    
+    return result;
+  }, [items, searchTerm, categoryFilter]);
 
   return (
     <section style={{ padding: '24px 16px', maxWidth: '1200px', margin: '0 auto' }}>
@@ -24,6 +48,23 @@ export default function LocalSignalsFeed({ items = seedSignals, sourceLabel = 'K
         </div>
         <h2 style={{ margin: 0, fontSize: '32px', fontWeight: 800 }}>Signals Feed</h2>
         <div style={{ color: 'var(--kch-text-sub)', fontSize: '13px' }}>{sourceLabel}</div>
+        
+        <div style={{ display: 'flex', gap: '16px', marginTop: '16px' }}>
+            <input 
+                type="text" 
+                placeholder="Search signals..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{ padding: '8px', borderRadius: '4px', border: '1px solid var(--kch-border)', background: 'transparent', color: 'white' }}
+            />
+            <select 
+                value={categoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
+                style={{ padding: '8px', borderRadius: '4px', border: '1px solid var(--kch-border)', background: 'transparent', color: 'white' }}
+            >
+                {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+            </select>
+        </div>
       </div>
       <div style={{ 
         display: 'grid', 
@@ -34,8 +75,8 @@ export default function LocalSignalsFeed({ items = seedSignals, sourceLabel = 'K
           <div className="radar-card" style={{ padding: '40px', textAlign: 'center', gridColumn: '1 / -1' }}>
             <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading Signals...</div>
           </div>
-        ) : cards.length > 0 ? (
-          cards.map((item) => (
+        ) : filteredCards.length > 0 ? (
+          filteredCards.map((item) => (
             <article 
               key={item.id} 
               className="radar-card" 
@@ -76,7 +117,7 @@ export default function LocalSignalsFeed({ items = seedSignals, sourceLabel = 'K
         ) : (
           <div className="radar-card" style={{ padding: '40px', textAlign: 'center', gridColumn: '1 / -1' }}>
             <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>NO SIGNALS</div>
-            <p style={{ color: 'var(--kch-text-sub)' }}>No signals available at this time.</p>
+            <p style={{ color: 'var(--kch-text-sub)' }}>No signals matching your filters.</p>
           </div>
         )}
       </div>
