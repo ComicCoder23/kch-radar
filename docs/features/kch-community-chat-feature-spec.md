@@ -33,7 +33,7 @@ KCH is a local discovery engine first. The Community Chat (Kirky Rooms) feature 
 ## 7. MVP Recommendation
 **PHASED ROLLOUT:**
 - **Phase 0**: Document Spec.
-- **Phase 1**: Static community-notice discussion threads.
+- **Phase 1**: Community noticeboard / comment-free discussion prompts.
 - **Phase 2**: Pseudonymous rooms with moderation.
 - **Phase 3**: Gamified badges and reputation.
 
