@@ -49,26 +49,23 @@ export default function LocalSignalsFeed({ items = [], sourceLabel = '', onItemC
               <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px' }}>{item.title.substring(0, 4)}</div>
 
               <div style={{ marginBottom: '8px' }}>
-                <span className="badge badge-sandstone">{item.badge}</span>
+                <span className={`badge ${item.badge.toLowerCase().includes('canal') ? 'badge-canal' : item.badge.toLowerCase().includes('campsie') ? 'badge-campsie' : item.badge.toLowerCase().includes('sandstone') ? 'badge-sandstone' : ''}`}>{item.badge}</span>
               </div>
 
               <h3 style={{ margin: '0 0 8px', fontSize: '18px', fontWeight: 700, color: 'var(--kch-primary-text)' }}>{item.title}</h3>
 
-              <div style={{ color: 'var(--kch-text-sub)', fontSize: '12px', marginBottom: '16px', fontFamily: 'var(--kch-mono, monospace)' }}>
+              <div style={{ color: 'var(--kch-text-sub)', fontSize: '12px', marginBottom: '16px', fontFamily: 'JetBrains Mono, monospace' }}>
                 {item.date}
               </div>
 
               <p style={{ margin: '0 0 20px', color: 'var(--kch-text-sub)', fontSize: '14px', lineHeight: 1.6, flexGrow: 1 }}>{item.note}</p>
 
               <button 
-                className="badge"
+                className="btn-primary"
                 style={{ 
                   alignSelf: 'start', 
-                  backgroundColor: 'var(--kch-primary-text)',
-                  color: 'white',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontWeight: 600
+                  fontSize: '12px',
+                  padding: '8px 16px'
                 }}
                 onClick={(e) => { e.stopPropagation(); item.link && window.open(item.link, '_blank'); }}
               >

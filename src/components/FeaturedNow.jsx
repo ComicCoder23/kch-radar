@@ -28,31 +28,27 @@ export default function FeaturedNow({ items = [], sourceLabel = '', onItemClick,
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', alignItems: 'center', marginBottom: '16px' }}>
-                <div className="badge-radar">{item.category}</div>
-                {item.badge ? <div className="badge-radar" style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--primary)', borderColor: 'rgba(59, 130, 246, 0.2)' }}>{item.badge}</div> : null}
+                <div className={`badge ${item.category.toLowerCase().includes('canal') ? 'badge-canal' : item.category.toLowerCase().includes('campsie') ? 'badge-campsie' : 'badge-sandstone'}`}>{item.category}</div>
+                {item.badge ? <div className="badge">{item.badge}</div> : null}
               </div>
-              <h3 style={{ margin: '0 0 12px', fontSize: '24px', fontWeight: 800, lineHeight: 1.2, color: '#fff' }}>{item.title}</h3>
-              <div className="mono" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--secondary)', fontSize: '13px', marginBottom: '16px' }}>
+              <h3 style={{ margin: '0 0 12px', fontSize: '24px', fontWeight: 800, lineHeight: 1.2, color: 'var(--kch-primary-text)' }}>{item.title}</h3>
+              <div className="mono" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--kch-text-sub)', fontSize: '13px', marginBottom: '16px' }}>
                  <span style={{ fontWeight: 600 }}>{item.town}</span>
                  <span style={{ opacity: 0.5 }}>//</span>
                  <span>{item.date}</span>
               </div>
-              <p style={{ margin: '0 0 24px', color: '#94a3b8', fontSize: '15px', lineHeight: 1.6, flex: 1 }}>{item.note}</p>
+              <p style={{ margin: '0 0 24px', color: 'var(--kch-text-sub)', fontSize: '15px', lineHeight: 1.6, flex: 1 }}>{item.note}</p>
               <a 
                 href={item.link} 
                 target="_blank" 
                 rel="noreferrer" 
+                className="btn-primary"
                 style={{ 
                   display: 'inline-block',
-                  padding: '12px 20px',
-                  background: 'var(--primary)',
-                  color: '#fff',
                   textDecoration: 'none',
-                  borderRadius: '12px',
                   textAlign: 'center',
                   fontWeight: 700,
-                  fontSize: '14px',
-                  boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
+                  fontSize: '14px'
                 }}
                 onClick={(e) => e.stopPropagation()}
               >{item.ctaText || 'INTERCEPT'}</a>

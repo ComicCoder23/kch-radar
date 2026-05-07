@@ -43,12 +43,15 @@ export default function CategoryGrid({ liveCards = [], sourceLabel = '' }) {
         maxWidth: '1200px',
         margin: '0 auto'
       }}>
-        {cards.map((item) => (
-          <article key={item.id} className="radar-card">
-            <span className="badge badge-sandstone" style={{ marginBottom: '12px', display: 'inline-block' }}>{item.title}</span>
-            <p className="mono" style={{ margin: 0, color: 'var(--kch-text-sub)', fontSize: '11px' }}>{item.intro}</p>
-          </article>
-        ))}
+        {cards.map((item) => {
+          const categoryClass = item.title.toLowerCase().includes('canal') ? 'badge-canal' : item.title.toLowerCase().includes('campsie') ? 'badge-campsie' : 'badge-sandstone';
+          return (
+            <article key={item.id} className="radar-card">
+              <span className={`badge ${categoryClass}`} style={{ marginBottom: '12px', display: 'inline-block' }}>{item.title}</span>
+              <p className="mono" style={{ margin: 0, color: 'var(--kch-text-sub)', fontSize: '11px' }}>{item.intro}</p>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
