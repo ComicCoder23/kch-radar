@@ -1,36 +1,53 @@
 # KCH Final Session Handover
 
-## 1. Current State
-KCH is a stable, visually aligned, research-backed local discovery platform.
+## 1. Current Milestone
+KCH is now a stable, polished, verified local discovery engine for Kirkintilloch.
 
-## 2. Latest Safe Commits
-- 1a2ef4f: Confirm canonical repo location.
-- 47f2925: Integrate local knowledge discovery layer (Card components).
-- fd9c507: Integrate local source attribution.
-- 6bec3a9: Merge radar signals into canonical seed data.
+## 2. Latest Commit
+f4603ada2e4d18a0a1435d691a222298c73fe1a6
 
-## 3. What Works
-- Homepage, LocalSignalsFeed, WeeklyDigest, LocalGuides, Venues/community hubs, Trust/freshness badges, seed-signals.json (18 entries), radar-signals.json artifact, build process.
+## 3. Completed Phases
+- GUI polish
+- Local knowledge architecture
+- Radar data conversion
+- Seed signal integration
+- Discovery search/filter improvements
+- Trust/source attribution layer
 
-## 4. Data Architecture
-- Foundation: `docs/research/raw/deep-research-report.md`
-- Live Tracker: Google Drive / Radar Master (Private)
-- Curation: `docs/data/kch-seed-listings.md`
-- Integration: `src/data/seed-signals.json`
-- Future: Prisma/PostgreSQL (Migrations pending)
+## 4. What Works
+- Homepage
+- Discovery feed
+- Seed signal data
+- Trust tags
+- Source attribution
+- Weekly Digest
+- Local Guides
+- Venue/community hubs
+- Build pipeline
 
 ## 5. Do Not Touch Yet
-- Clerk live keys, Stripe live keys, Prisma migrations, database schema, live chat implementation, full Radar Master ingestion, copyrighted archive images.
+- Clerk live keys
+- Stripe live keys
+- Prisma migrations
+- database schema
+- live chat / Kirky Rooms
+- copyrighted archive images
+- private group/community data
 
-## 6. Next Recommended Phases
-Option A — Manual UX review by Alan
-Option B — Convert seed listings into frontend mock data
-Option C — Build search/filter UI for the 18 seed signals
-Option D — Prepare Prisma migration proposal only
-Option E — Platform review / UX smoke test (Recommended)
+## 6. Recommended Next Phase
+Manual platform review by Alan, then decide between:
+- expanding Radar data
+- improving search/filter UX
+- adding real local imagery
+- preparing database migration proposal only
+- planning outreach/onboarding for local groups
 
-## 7. First Safe Next Sprint
-KCH-DISCOVERY-001 — Add Search and Filter UI for Seed Signals
+## 7. Next Safe Sprint Options
+- KCH-REVIEW-001 — Alan Manual UX Review
+- KCH-DATA-001 — Expand Radar Seed Dataset
+- KCH-IMAGE-001 — Local Image Asset Plan
+- KCH-OUTREACH-001 — Community Partner Outreach Pack
+- KCH-DB-001 — Prisma Migration Proposal Only
 
-## 8. Session Stop Point
-This is a safe stopping point. Work should resume from this handover file.
+## 8. Resume Instruction
+Resume from this file before starting any new sprint.
