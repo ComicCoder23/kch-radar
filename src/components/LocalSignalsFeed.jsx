@@ -1,17 +1,19 @@
+import seedSignals from '../data/seed-signals.json';
+
 function normalizeSignal(item, index) {
   return {
     ...item,
     id: item.id || `signal-${index}`,
     title: item.title || 'Untitled Signal',
-    note: item.note || '',
-    badge: item.badge || 'Signal',
-    date: item.date || 'Just now',
-    ctaText: item.ctaText || 'INTERCEPT',
-    link: item.link || '',
+    note: item.description || '',
+    badge: item.category || 'Signal',
+    date: item.freshnessLevel || 'Just now',
+    ctaText: 'INTERCEPT',
+    link: '#',
   };
 }
 
-export default function LocalSignalsFeed({ items = [], sourceLabel = '', onItemClick, loading = false }) {
+export default function LocalSignalsFeed({ items = seedSignals, sourceLabel = 'KCH Seed Database', onItemClick, loading = false }) {
   const cards = items.map(normalizeSignal);
 
   return (

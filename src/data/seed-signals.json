@@ -1,0 +1,38 @@
+[
+  {
+    "id": "seed-001",
+    "title": "Auld Kirk Museum Exhibition",
+    "category": "What's On",
+    "subcategory": "Heritage",
+    "description": "Explore local history with our latest exhibition.",
+    "location": "Kirkintilloch",
+    "source": "EDLC",
+    "trustLevel": "Official",
+    "freshnessLevel": "Active this month",
+    "listingType": "Event"
+  },
+  {
+    "id": "seed-002",
+    "title": "Kirkintilloch Men's Shed",
+    "category": "People & Groups",
+    "subcategory": "Fellowship",
+    "description": "A place for men to connect and work on projects.",
+    "location": "Kirkintilloch",
+    "source": "Public organization",
+    "trustLevel": "Verified",
+    "freshnessLevel": "Likely active",
+    "listingType": "Group"
+  },
+  {
+    "id": "seed-003",
+    "title": "Foodbank Emergency Support",
+    "category": "Local Services",
+    "subcategory": "Support",
+    "description": "Emergency food help for local residents in crisis.",
+    "location": "Kirkintilloch",
+    "source": "Public organization",
+    "trustLevel": "Official",
+    "freshnessLevel": "Active this month",
+    "listingType": "Service"
+  }
+]
