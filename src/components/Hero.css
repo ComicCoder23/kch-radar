@@ -1,0 +1,23 @@
+.hero {
+  padding: 80px 24px;
+  text-align: center;
+  background: #fdfdfc;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.hero h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 32px;
+}

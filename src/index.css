@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --kch-canal-blue: #0e4f77;
+  --kch-campsie-green: #2d6a4f;
+  --kch-sandstone: #d4a373;
+  --kch-page-bg: #fdfdfc;
+  --kch-card-bg: #ffffff;
+  --kch-primary-text: #1a1a1a;
+  --kch-text-sub: #666666;
+  --kch-border: #e0e0e0;
+  --radar-glow: var(--kch-sandstone);
+  --grid-color: rgba(200, 200, 200, 0.3);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--kch-page-bg);
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--kch-primary-text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+code, .mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+@keyframes radar-scan {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.4); }
+  70% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 10px rgba(212, 163, 115, 0); }
+  100% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 0 0 rgba(212, 163, 115, 0); }
+}
+
+.radar-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.radar-sweep {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(212, 163, 115, 0.1) 90deg, transparent 90deg);
+  transform-origin: center;
+  animation: radar-scan 4s linear infinite;
+  pointer-events: none;
+}
+
+.radar-card {
+  background: var(--kch-card-bg);
+  border: 1px solid var(--kch-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  padding: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.radar-card:hover {
+  border-color: var(--kch-sandstone);
+  box-shadow: 0 10px 15px rgba(212, 163, 115, 0.1);
+  transform: translateY(-4px);
+}
+
+.radar-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--kch-sandstone), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.radar-card:hover::after {
+  opacity: 1;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  background: var(--radar-glow);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  animation: pulse 2s infinite;
+}
+
+.badge-radar {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--kch-page-bg);
+  color: var(--kch-text-sub);
+  border: 1px solid var(--kch-border);
+}
+
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: scale(0.98);
+}

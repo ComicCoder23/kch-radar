@@ -1,5 +1,6 @@
 
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const express = require('express');
 const cors = require('cors');
@@ -93,6 +94,28 @@ app.post('/api/create-checkout-session', async (req, res) => {
     });
 
     res.json({ id: session.id });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/signals', async (req, res) => {
+  try {
+    const signals = await prisma.signal.findMany({
+      orderBy: { sortOrder: 'asc' },
+    });
+    res.json(signals);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/signals', async (req, res) => {
+  try {
+    const signal = await prisma.signal.create({
+      data: req.body,
+    });
+    res.json(signal);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

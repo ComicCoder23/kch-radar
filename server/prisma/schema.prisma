@@ -34,3 +34,24 @@ model Booking {
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
+
+model Signal {
+  id          String   @id @default(uuid())
+  category    String?
+  title       String
+  town        String?
+  address     String?
+  date        String?
+  note        String?
+  link        String?
+  cardType    String?
+  section     String?
+  sortOrder   Int      @default(9999)
+  badge       String?
+  ctaText     String?  @default("View details")
+  activeFrom  String?
+  activeUntil String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
