@@ -28,7 +28,7 @@ export default function CategoryGrid({ liveCards = [], sourceLabel = '' }) {
   const cards = liveCards.length ? buildLiveCategoryCards(liveCards) : mockQueueData.categories;
 
   return (
-    <section style={{ padding: '24px 16px' }}>
+    <section style={{ padding: '24px 16px', maxWidth: '1200px', margin: '0 auto' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
         <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--kch-text-sub)', fontWeight: 700 }}>
              Sector Map
@@ -39,15 +39,13 @@ export default function CategoryGrid({ liveCards = [], sourceLabel = '' }) {
       <div style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', 
-        gap: '20px',
-        maxWidth: '1200px',
-        margin: '0 auto'
+        gap: '20px'
       }}>
         {cards.map((item) => {
           const categoryClass = item.title.toLowerCase().includes('canal') ? 'badge-canal' : item.title.toLowerCase().includes('campsie') ? 'badge-campsie' : 'badge-sandstone';
           return (
             <article key={item.id} className="radar-card">
-              <span className={`badge ${categoryClass}`} style={{ marginBottom: '12px', display: 'inline-block' }}>{item.title}</span>
+              <span className={`badge ${categoryClass}`} style={{ marginBottom: '12px', display: 'inline-flex' }}>{item.title}</span>
               <p className="mono" style={{ margin: 0, color: 'var(--kch-text-sub)', fontSize: '11px' }}>{item.intro}</p>
             </article>
           );

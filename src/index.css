@@ -197,5 +197,12 @@ button:hover {
   button, .btn-primary, .btn-secondary, .badge {
     min-height: 44px;
     padding: 12px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  body {
+    background-size: 20px 20px;
   }
 }
