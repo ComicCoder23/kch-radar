@@ -40,10 +40,8 @@ export default function CategoryGrid({ liveCards = [], sourceLabel = '' }) {
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
         {cards.map((item) => (
-          <article key={item.id} className="radar-card" style={{ borderStyle: 'dashed' }}>
-            <h3 className="mono" style={{ margin: '0 0 8px', fontSize: '16px', fontWeight: 800, color: 'var(--primary)', textTransform: 'uppercase' }}>
-              {item.title}
-            </h3>
+          <article key={item.id} className="radar-card">
+            <span className="badge badge-sandstone" style={{ marginBottom: '12px', display: 'inline-block' }}>{item.title}</span>
             <p className="mono" style={{ margin: 0, color: 'var(--muted)', fontSize: '11px' }}>{item.intro}</p>
           </article>
         ))}

@@ -22,8 +22,6 @@ export default function SubmitSignalForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Combine date and times for the backend date field if needed, 
-    // or just send as-is since the schema is flexible (strings)
     const payload = {
       ...formData,
       date: `${formData.date} // ${formData.startTime} - ${formData.endTime}`.trim()
@@ -44,16 +42,27 @@ export default function SubmitSignalForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const inputStyle = { 
+    padding: '12px', 
+    borderRadius: '4px', 
+    border: '1px solid var(--kch-border)', 
+    background: '#ffffff', 
+    color: 'var(--kch-primary-text)',
+    fontSize: '14px'
+  };
+
+  const labelStyle = { fontSize: '11px', color: 'var(--kch-text-sub)', fontWeight: 600, letterSpacing: '0.05em' };
+
   return (
     <section style={{ padding: '24px 0 8px' }}>
       <div className="radar-card" style={{ padding: '32px' }}>
-        <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--secondary)', fontWeight: 700 }}>
+        <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--kch-text-sub)', fontWeight: 700 }}>
            System Intake
         </div>
         <h2 style={{ margin: '6px 0 16px', fontSize: '32px', fontWeight: 800 }}>Submit a Signal</h2>
         
         <SignedOut>
-          <p style={{ color: '#94a3b8', maxWidth: '720px' }}>
+          <p style={{ color: 'var(--kch-text-sub)', maxWidth: '720px' }}>
             Local organisers and community groups can broadcast events to the radar. 
             <strong> Please Sign In to transmit a signal.</strong>
           </p>
@@ -61,85 +70,40 @@ export default function SubmitSignalForm() {
 
         <SignedIn>
           {submitted ? (
-            <div style={{ padding: '20px', background: 'rgba(16, 185, 129, 0.1)', color: 'var(--secondary)', borderRadius: '12px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+            <div style={{ padding: '20px', background: 'rgba(45, 106, 79, 0.1)', color: 'var(--kch-campsie-green)', borderRadius: '8px', border: '1px solid rgba(45, 106, 79, 0.2)' }}>
               Transmission Received. Your signal is now live on the G66 radar.
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '24px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <label className="mono" style={{ fontSize: '11px', color: 'var(--muted)' }}>SIGNAL TITLE</label>
-                  <input 
-                    type="text" 
-                    name="title"
-                    placeholder="e.g. Open Mic at McGinley's" 
-                    required 
-                    value={formData.title}
-                    onChange={handleChange}
-                    style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(0,0,0,0.2)', color: '#fff' }} 
-                  />
+                  <label style={labelStyle}>SIGNAL TITLE</label>
+                  <input type="text" name="title" placeholder="e.g. Open Mic" required value={formData.title} onChange={handleChange} style={inputStyle} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <label className="mono" style={{ fontSize: '11px', color: 'var(--muted)' }}>LOCATION / ADDRESS</label>
-                  <input 
-                    type="text" 
-                    name="address"
-                    placeholder="e.g. 123 Cowgate, Kirkintilloch" 
-                    required 
-                    value={formData.address}
-                    onChange={handleChange}
-                    style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(0,0,0,0.2)', color: '#fff' }} 
-                  />
+                  <label style={labelStyle}>LOCATION / ADDRESS</label>
+                  <input type="text" name="address" placeholder="e.g. 123 Cowgate" required value={formData.address} onChange={handleChange} style={inputStyle} />
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <label className="mono" style={{ fontSize: '11px', color: 'var(--muted)' }}>DATE</label>
-                  <input 
-                    type="text" 
-                    name="date"
-                    placeholder="e.g. Friday, May 22" 
-                    required 
-                    value={formData.date}
-                    onChange={handleChange}
-                    style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(0,0,0,0.2)', color: '#fff' }} 
-                  />
+                  <label style={labelStyle}>DATE</label>
+                  <input type="text" name="date" placeholder="e.g. Friday" required value={formData.date} onChange={handleChange} style={inputStyle} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <label className="mono" style={{ fontSize: '11px', color: 'var(--muted)' }}>START TIME</label>
-                  <input 
-                    type="text" 
-                    name="startTime"
-                    placeholder="e.g. 19:00" 
-                    value={formData.startTime}
-                    onChange={handleChange}
-                    style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(0,0,0,0.2)', color: '#fff' }} 
-                  />
+                  <label style={labelStyle}>START</label>
+                  <input type="text" name="startTime" placeholder="e.g. 19:00" value={formData.startTime} onChange={handleChange} style={inputStyle} />
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <label className="mono" style={{ fontSize: '11px', color: 'var(--muted)' }}>END TIME</label>
-                  <input 
-                    type="text" 
-                    name="endTime"
-                    placeholder="e.g. 23:30" 
-                    value={formData.endTime}
-                    onChange={handleChange}
-                    style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(0,0,0,0.2)', color: '#fff' }} 
-                  />
+                  <label style={labelStyle}>END</label>
+                  <input type="text" name="endTime" placeholder="e.g. 23:30" value={formData.endTime} onChange={handleChange} style={inputStyle} />
                 </div>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label className="mono" style={{ fontSize: '11px', color: 'var(--muted)' }}>INTEL / DESCRIPTION</label>
-                <textarea 
-                  name="note"
-                  placeholder="What's happening? (e.g. Acoustic sets, all welcome, sober-friendly atmosphere...)" 
-                  required 
-                  value={formData.note}
-                  onChange={handleChange}
-                  style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(0,0,0,0.2)', color: '#fff', minHeight: '80px' }} 
-                />
+                <label style={labelStyle}>INTEL / DESCRIPTION</label>
+                <textarea name="note" placeholder="What's happening?" required value={formData.note} onChange={handleChange} style={{ ...inputStyle, minHeight: '120px' }} />
               </div>
 
               <button 
@@ -147,15 +111,14 @@ export default function SubmitSignalForm() {
                 disabled={loading}
                 style={{ 
                   padding: '16px', 
-                  background: loading ? 'var(--muted)' : 'var(--primary)', 
+                  background: 'var(--kch-canal-blue)', 
                   color: '#fff', 
                   border: 'none', 
-                  borderRadius: '12px', 
+                  borderRadius: '4px', 
                   cursor: loading ? 'not-allowed' : 'pointer',
-                  fontWeight: '800',
+                  fontWeight: '700',
                   fontSize: '14px',
-                  letterSpacing: '0.1em',
-                  boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
+                  letterSpacing: '0.1em'
                 }}
               >
                 {loading ? "TRANSMITTING..." : "BROADCAST SIGNAL"}

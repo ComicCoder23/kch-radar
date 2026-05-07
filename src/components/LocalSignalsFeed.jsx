@@ -17,39 +17,66 @@ export default function LocalSignalsFeed({ items = [], sourceLabel = '', onItemC
     <section style={{ padding: '24px 0' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '16px', marginBottom: '24px' }}>
         <div>
-          <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--secondary)', fontWeight: 700 }}>
-             <span className="status-indicator"></span> Intake Layer
+          <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--kch-text-sub)', fontWeight: 600 }}>
+             Local Discovery
           </div>
-          <h2 style={{ margin: '6px 0 0', fontSize: '32px', fontWeight: 800 }}>Local Signals Feed</h2>
+          <h2 style={{ margin: '6px 0 0', fontSize: '32px', fontWeight: 800 }}>Signals Feed</h2>
         </div>
-        <div className="mono" style={{ color: 'var(--muted)', fontSize: '13px' }}>{sourceLabel}</div>
+        <div style={{ color: 'var(--kch-text-sub)', fontSize: '13px' }}>{sourceLabel}</div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
         {cards.map((item) => (
           <article 
             key={item.id} 
-            className="radar-card" 
             onClick={() => onItemClick && onItemClick(item)}
-            style={{ cursor: 'pointer' }}
+            style={{ 
+              cursor: 'pointer',
+              backgroundColor: 'var(--kch-card-bg)',
+              border: '1px solid var(--kch-border)',
+              borderRadius: '12px',
+              padding: '24px',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
+              e.currentTarget.style.borderColor = 'var(--kch-sandstone)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+              e.currentTarget.style.borderColor = 'var(--kch-border)';
+            }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', alignItems: 'center', marginBottom: '12px' }}>
-              <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, color: '#fff' }}>{item.title}</h3>
-              {item.badge ? <div className="badge-radar">{item.badge}</div> : null}
+            <div className="image-placeholder" style={{ marginBottom: '16px', height: '120px' }}>KCH</div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', alignItems: 'center', marginBottom: '16px' }}>
+              <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 700, color: 'var(--kch-primary-text)' }}>{item.title}</h3>
+              {item.badge ? (
+                <span style={{ 
+                  fontSize: '11px', 
+                  fontWeight: 600, 
+                  padding: '4px 12px', 
+                  borderRadius: '20px', 
+                  backgroundColor: 'rgba(212, 163, 115, 0.1)',
+                  color: 'var(--kch-sandstone)',
+                  textTransform: 'uppercase'
+                }}>
+                  {item.badge}
+                </span>
+              ) : null}
             </div>
-            <p style={{ margin: '0 0 20px', color: '#94a3b8', fontSize: '14px', lineHeight: 1.5 }}>{item.note}</p>
+            <p style={{ margin: '0 0 20px', color: 'var(--kch-text-sub)', fontSize: '14px', lineHeight: 1.6 }}>{item.note}</p>
             {item.link ? (
               <a 
                 href={item.link} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="mono" 
-                style={{ color: 'var(--secondary)', fontWeight: 700, textDecoration: 'none', fontSize: '12px' }}
+                style={{ color: 'var(--kch-canal-blue)', fontWeight: 600, textDecoration: 'none', fontSize: '13px' }}
                 onClick={(e) => e.stopPropagation()}
               >
-                {item.ctaText} // VIEW
+                {item.ctaText} →
               </a>
             ) : (
-              <span className="mono" style={{ color: 'var(--muted)', fontWeight: 700, fontSize: '12px' }}>{item.ctaText}</span>
+              <span style={{ color: 'var(--kch-text-sub)', fontWeight: 600, fontSize: '13px' }}>{item.ctaText}</span>
             )}
           </article>
         ))}
