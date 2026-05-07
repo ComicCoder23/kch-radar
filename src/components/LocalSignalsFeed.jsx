@@ -2,9 +2,10 @@ function normalizeSignal(item, index) {
   return {
     ...item,
     id: item.id || `signal-${index}`,
-    title: item.title || '',
+    title: item.title || 'Untitled Signal',
     note: item.note || '',
-    badge: item.badge || '',
+    badge: item.badge || 'Signal',
+    date: item.date || 'Just now',
     ctaText: item.ctaText || 'INTERCEPT',
     link: item.link || '',
   };
@@ -24,63 +25,52 @@ export default function LocalSignalsFeed({ items = [], sourceLabel = '', onItemC
         </div>
         <div style={{ color: 'var(--kch-text-sub)', fontSize: '13px' }}>{sourceLabel}</div>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
         {cards.map((item) => (
           <article 
             key={item.id} 
+            className="radar-card"
             onClick={() => onItemClick && onItemClick(item)}
             style={{ 
               cursor: 'pointer',
-              backgroundColor: 'var(--kch-card-bg)',
-              border: '1px solid var(--kch-border)',
-              borderRadius: '12px',
-              padding: '24px',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
-              transition: 'all 0.2s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
-              e.currentTarget.style.borderColor = 'var(--kch-sandstone)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
-              e.currentTarget.style.borderColor = 'var(--kch-border)';
+              display: 'flex',
+              flexDirection: 'column'
             }}
           >
-            <div className="image-placeholder" style={{ marginBottom: '16px', height: '120px' }}>KCH</div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', alignItems: 'center', marginBottom: '16px' }}>
-              <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 700, color: 'var(--kch-primary-text)' }}>{item.title}</h3>
-              {item.badge ? (
-                <span style={{ 
-                  fontSize: '11px', 
-                  fontWeight: 600, 
-                  padding: '4px 12px', 
-                  borderRadius: '20px', 
-                  backgroundColor: 'rgba(212, 163, 115, 0.1)',
-                  color: 'var(--kch-sandstone)',
-                  textTransform: 'uppercase'
-                }}>
-                  {item.badge}
-                </span>
-              ) : null}
+            <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px' }}>{item.title.substring(0, 4)}</div>
+            
+            <div style={{ marginBottom: '8px' }}>
+              <span className="badge badge-sandstone">{item.badge}</span>
             </div>
-            <p style={{ margin: '0 0 20px', color: 'var(--kch-text-sub)', fontSize: '14px', lineHeight: 1.6 }}>{item.note}</p>
-            {item.link ? (
-              <a 
-                href={item.link} 
-                target="_blank" 
-                rel="noreferrer" 
-                style={{ color: 'var(--kch-canal-blue)', fontWeight: 600, textDecoration: 'none', fontSize: '13px' }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                {item.ctaText} →
-              </a>
-            ) : (
-              <span style={{ color: 'var(--kch-text-sub)', fontWeight: 600, fontSize: '13px' }}>{item.ctaText}</span>
-            )}
+
+            <h3 style={{ margin: '0 0 8px', fontSize: '18px', fontWeight: 700, color: 'var(--kch-primary-text)' }}>{item.title}</h3>
+            
+            <div style={{ color: 'var(--kch-text-sub)', fontSize: '12px', marginBottom: '16px', fontFamily: 'var(--kch-mono, monospace)' }}>
+              {item.date}
+            </div>
+
+            <p style={{ margin: '0 0 20px', color: 'var(--kch-text-sub)', fontSize: '14px', lineHeight: 1.6, flexGrow: 1 }}>{item.note}</p>
+            
+            <button 
+              className="badge"
+              style={{ 
+                alignSelf: 'start', 
+                backgroundColor: 'var(--kch-primary-text)',
+                color: 'white',
+                border: 'none',
+                padding: '8px 16px',
+                fontSize: '12px',
+                cursor: 'pointer',
+                fontWeight: 600
+              }}
+              onClick={(e) => { e.stopPropagation(); item.link && window.open(item.link, '_blank'); }}
+            >
+              {item.ctaText}
+            </button>
           </article>
         ))}
       </div>
     </section>
   );
 }
+

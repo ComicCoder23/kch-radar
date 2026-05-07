@@ -151,6 +151,32 @@ button:hover {
   transform: translateY(-1px);
 }
 
+.btn-primary {
+  padding: 12px 24px;
+  background-color: var(--kch-canal-blue);
+  color: white;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover { filter: brightness(1.1); }
+
+.btn-secondary {
+  padding: 12px 24px;
+  background-color: transparent;
+  color: var(--kch-canal-blue);
+  border-radius: 8px;
+  border: 1px solid var(--kch-canal-blue);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover { background-color: rgba(14, 79, 119, 0.05); }
+
 @media (max-width: 768px) {
   .radar-card {
     padding: 16px !important;

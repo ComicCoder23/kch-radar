@@ -34,19 +34,7 @@ export default function BookingButton() {
   return (
     <button
       onClick={handleCheckout}
-      style={{
-        padding: '12px 24px',
-        background: '#059669',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '12px',
-        fontSize: '16px',
-        fontWeight: '600',
-        cursor: 'pointer',
-        marginTop: '16px',
-        display: 'block',
-        width: 'fit-content'
-      }}
+      className="btn-primary"
     >
       Book a Studio Session
     </button>
