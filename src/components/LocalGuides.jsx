@@ -1,11 +1,5 @@
 import './LocalGuides.css';
-
-const guides = [
-  { title: 'Marina & Canal', badge: 'badge-canal', desc: 'Explore the Forth & Clyde Canal pathways and marina life.' },
-  { title: 'Antonine Wall', badge: 'badge-sandstone', desc: 'Step back in time along the UNESCO World Heritage Roman frontier.' },
-  { title: 'Campsie Hills', badge: 'badge-campsie', desc: 'Panoramic views and challenging trails for outdoor enthusiasts.' },
-  { title: 'Venues & Spaces', badge: 'badge-sandstone', desc: 'Discover community halls, art spaces, and local event hubs.' }
-];
+import guides from '../data/seed-guides.json';
 
 export default function LocalGuides() {
   return (
