@@ -7,6 +7,7 @@ export default function SubmitSignalForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [touched, setTouched] = useState({});
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
     note: "",
@@ -22,6 +23,7 @@ export default function SubmitSignalForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
     setLoading(true);
     const payload = {
       ...formData,
@@ -32,7 +34,7 @@ export default function SubmitSignalForm() {
       setSubmitted(true);
     } catch (error) {
       console.error("Error submitting signal:", error);
-      alert("Failed to submit signal. Is the backend running?");
+      setError("Failed to transmit signal. Please check your network connection and try again.");
     } finally {
       setLoading(false);
     }
@@ -86,14 +88,21 @@ export default function SubmitSignalForm() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '24px' }}>
+              {error && (
+                <div style={{ padding: '12px', background: '#fff5f5', color: '#ef4444', borderRadius: '4px', border: '1px solid #ef4444', fontSize: '14px' }}>
+                  {error}
+                </div>
+              )}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <label style={labelStyle}>SIGNAL TITLE *</label>
                   <input type="text" name="title" className={getClassName('title')} placeholder="e.g. Community Garden Day" required value={formData.title} onChange={handleChange} onBlur={handleBlur} style={inputStyle} />
+                  {touched.title && !formData.title && <span style={{ fontSize: '11px', color: '#ef4444' }}>Title is required.</span>}
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <label style={labelStyle}>LOCATION / ADDRESS *</label>
                   <input type="text" name="address" className={getClassName('address')} placeholder="e.g. 123 Cowgate" required value={formData.address} onChange={handleChange} onBlur={handleBlur} style={inputStyle} />
+                  {touched.address && !formData.address && <span style={{ fontSize: '11px', color: '#ef4444' }}>Address is required.</span>}
                 </div>
               </div>
 
@@ -101,6 +110,7 @@ export default function SubmitSignalForm() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <label style={labelStyle}>DATE *</label>
                   <input type="text" name="date" className={getClassName('date')} placeholder="e.g. 2026-05-10" required value={formData.date} onChange={handleChange} onBlur={handleBlur} style={inputStyle} />
+                  {touched.date && !formData.date && <span style={{ fontSize: '11px', color: '#ef4444' }}>Date is required.</span>}
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <label style={labelStyle}>START TIME</label>
@@ -115,25 +125,26 @@ export default function SubmitSignalForm() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <label style={labelStyle}>INTEL / DESCRIPTION *</label>
                 <textarea name="note" className={getClassName('note')} placeholder="Provide event details here..." required value={formData.note} onChange={handleChange} onBlur={handleBlur} style={{ ...inputStyle, minHeight: '120px' }} />
+                {touched.note && !formData.note && <span style={{ fontSize: '11px', color: '#ef4444' }}>Description is required.</span>}
               </div>
 
               <button 
                 type="submit" 
                 disabled={loading}
+                className="btn-primary"
                 style={{ 
                   padding: '16px', 
-                  background: loading ? '#666' : 'var(--kch-primary)', 
-                  color: '#fff', 
                   border: 'none', 
                   borderRadius: '4px', 
                   cursor: loading ? 'not-allowed' : 'pointer',
                   fontWeight: '700',
                   fontSize: '15px',
                   letterSpacing: '0.1em',
-                  fontFamily: 'Inter, sans-serif'
+                  fontFamily: 'Inter, sans-serif',
+                  opacity: loading ? 0.7 : 1
                 }}
               >
-                {loading ? "TRANSMITTING..." : "BROADCAST SIGNAL"}
+                {loading ? "TRANSMITTING SIGNAL..." : "BROADCAST SIGNAL"}
               </button>
             </form>
           )}
