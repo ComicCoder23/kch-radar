@@ -26,8 +26,8 @@ export default function HiddenOpportunities({ items = [], sourceLabel = '', onIt
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
         {loading ? (
-          <article className="radar-card" style={{ padding: '30px', textAlign: 'center' }}>
-            <p style={{ color: 'var(--muted)', fontStyle: 'italic' }}>Scanning for opportunities...</p>
+          <article className="radar-card" style={{ padding: '40px', textAlign: 'center', gridColumn: '1 / -1' }}>
+            <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Scanning Opportunities...</div>
           </article>
         ) : cards.length > 0 ? (
           cards.map((item) => (
@@ -62,7 +62,8 @@ export default function HiddenOpportunities({ items = [], sourceLabel = '', onIt
             </article>
           ))
         ) : (
-          <article className="radar-card" style={{ padding: '30px', textAlign: 'center', gridColumn: '1 / -1' }}>
+          <article className="radar-card" style={{ padding: '40px', textAlign: 'center', gridColumn: '1 / -1' }}>
+            <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>NO OPPORTUNITIES</div>
             <p style={{ color: 'var(--muted)' }}>No hidden opportunities currently detected.</p>
           </article>
         )}

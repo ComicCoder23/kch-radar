@@ -29,8 +29,8 @@ export default function LocalSignalsFeed({ items = [], sourceLabel = '', onItemC
         gap: '20px'
       }}>
         {loading ? (
-          <div className="radar-card" style={{ padding: '40px', textAlign: 'center' }}>
-            <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', opacity: 0.3 }}>Loading...</div>
+          <div className="radar-card" style={{ padding: '40px', textAlign: 'center', gridColumn: '1 / -1' }}>
+            <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading Signals...</div>
           </div>
         ) : cards.length > 0 ? (
           cards.map((item) => (
@@ -44,7 +44,7 @@ export default function LocalSignalsFeed({ items = [], sourceLabel = '', onItemC
                 flexDirection: 'column'
               }}
             >
-              <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px' }}>{item.title.substring(0, 4)}</div>
+              <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{item.title.substring(0, 4)}</div>
 
               <div style={{ marginBottom: '8px' }}>
                 <span className={`badge ${item.badge.toLowerCase().includes('canal') ? 'badge-canal' : item.badge.toLowerCase().includes('campsie') ? 'badge-campsie' : item.badge.toLowerCase().includes('sandstone') ? 'badge-sandstone' : ''}`}>{item.badge}</span>
@@ -73,6 +73,7 @@ export default function LocalSignalsFeed({ items = [], sourceLabel = '', onItemC
           ))
         ) : (
           <div className="radar-card" style={{ padding: '40px', textAlign: 'center', gridColumn: '1 / -1' }}>
+            <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>NO SIGNALS</div>
             <p style={{ color: 'var(--kch-text-sub)' }}>No signals available at this time.</p>
           </div>
         )}

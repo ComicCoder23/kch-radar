@@ -12,8 +12,8 @@ export default function FeaturedNow({ items = [], sourceLabel = '', onItemClick,
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
         {loading ? (
-          <article className="radar-card" style={{ padding: '40px', textAlign: 'center' }}>
-            <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', opacity: 0.3 }}>Loading...</div>
+          <article className="radar-card" style={{ padding: '40px', textAlign: 'center', gridColumn: '1 / -1' }}>
+            <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading Featured...</div>
           </article>
         ) : items.length > 0 ? (
           items.map((item) => (
@@ -56,6 +56,7 @@ export default function FeaturedNow({ items = [], sourceLabel = '', onItemClick,
           ))
         ) : (
           <article className="radar-card" style={{ padding: '40px', textAlign: 'center', gridColumn: '1 / -1' }}>
+            <div className="image-placeholder" style={{ marginBottom: '16px', height: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>NO SIGNALS</div>
             <p style={{ color: 'var(--kch-text-sub)' }}>No featured signals at this time.</p>
           </article>
         )}
