@@ -3,12 +3,22 @@ export default function Footer() {
     <footer style={{ 
       marginTop: '64px', 
       padding: '48px 24px', 
-      borderTop: '1px solid var(--kch-border)', 
+      borderTop: '4px solid var(--kch-canal-blue)', 
       textAlign: 'center',
       background: 'var(--kch-page-bg)',
-      fontSize: '14px'
+      fontSize: '14px',
+      position: 'relative'
     }}>
-      <h3 style={{ fontSize: '18px', margin: '0 0 8px', color: 'var(--kch-primary-text)' }}>Kirky Creative Hub</h3>
+      <div style={{
+        position: 'absolute',
+        top: '-1px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '60px',
+        height: '4px',
+        background: '#0f172a'
+      }} />
+      <h3 style={{ fontSize: '18px', margin: '16px 0 8px', color: 'var(--kch-primary-text)' }}>Kirky Creative Hub</h3>
       <p style={{ color: 'var(--kch-text-sub)', marginBottom: '24px' }}>
         Rooted in Kirkintilloch & Surrounding Area • G66 Signal Network
       </p>
