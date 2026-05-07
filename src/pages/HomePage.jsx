@@ -144,37 +144,37 @@ export default function HomePage() {
       <div style={{ marginTop: '80px', display: 'flex', flexDirection: 'column', gap: '60px' }}>
         <SubmitSignalForm />
         
-        <div className="radar-card" style={{ borderStyle: 'solid', borderColor: 'var(--secondary)', background: 'rgba(16, 185, 129, 0.05)' }}>
-          <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--secondary)', fontWeight: 700, marginBottom: '12px' }}>Network Node</div>
-          <h3 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '16px', color: '#fff' }}>G66 Community Pulse</h3>
-          <p style={{ color: '#94a3b8', marginBottom: '32px', fontSize: '18px', maxWidth: '700px', lineHeight: '1.6' }}>
+        <div className="radar-card">
+          <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--kch-campsie-green)', fontWeight: 700, marginBottom: '12px' }}>Network Node</div>
+          <h3 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '16px', color: 'var(--kch-primary-text)' }}>G66 Community Pulse</h3>
+          <p style={{ color: 'var(--kch-text-sub)', marginBottom: '32px', fontSize: '18px', maxWidth: '700px', lineHeight: '1.6' }}>
             Connect with local creatives, organisers, and sober-friendly groups in real-time. 
             Join our Slack-powered community hub to chat, collaborate, and share live intel.
           </p>
           
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginBottom: '32px' }}>
             {['Alan', 'Tamsin', 'Mark', 'Sarah', 'KCH Admin'].map((name) => (
-              <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'rgba(255,255,255,0.05)', borderRadius: '30px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div style={{ width: '24px', height: '24px', background: 'var(--primary)', borderRadius: '50%', fontSize: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>{name[0]}</div>
-                <span className="mono" style={{ fontSize: '12px', fontWeight: 600 }}>{name}</span>
+              <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'rgba(0,0,0,0.03)', borderRadius: '30px', border: '1px solid var(--kch-border)' }}>
+                <div style={{ width: '24px', height: '24px', background: 'var(--kch-canal-blue)', color: 'white', borderRadius: '50%', fontSize: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>{name[0]}</div>
+                <span className="mono" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--kch-primary-text)' }}>{name}</span>
                 <div className="status-indicator" style={{ width: '6px', height: '6px', marginLeft: '4px' }}></div>
               </div>
             ))}
-            <div className="mono" style={{ padding: '8px 16px', color: 'var(--muted)', fontSize: '12px' }}>+ 142 others online</div>
+            <div className="mono" style={{ padding: '8px 16px', color: 'var(--kch-text-sub)', fontSize: '12px' }}>+ 142 others online</div>
           </div>
 
           <a href="#" style={{ 
             display: 'inline-block',
             padding: '16px 32px',
-            background: 'var(--secondary)',
+            background: 'var(--kch-canal-blue)',
             color: '#fff',
             textDecoration: 'none',
-            borderRadius: '12px',
+            borderRadius: '8px',
             textAlign: 'center',
             fontWeight: 800,
             fontSize: '16px',
             letterSpacing: '0.1em',
-            boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)'
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
           }}>JOIN THE COMMUNITY SLACK</a>
         </div>
       </div>
