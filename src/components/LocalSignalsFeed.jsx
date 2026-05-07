@@ -105,6 +105,12 @@ export default function LocalSignalsFeed({ items = seedSignals, sourceLabel = 'K
 
               <p style={{ margin: '0 0 20px', color: 'var(--kch-text-sub)', fontSize: '14px', lineHeight: 1.6, flexGrow: 1 }}>{item.note}</p>
 
+              {item.source && item.source !== 'Unknown' && (
+                <div className="notice-source" style={{ fontSize: '11px', fontFamily: 'Inter, sans-serif', color: 'var(--kch-text-sub)', marginBottom: '8px' }}>
+                  Source: {item.source}
+                </div>
+              )}
+
               <button 
                 className="btn-primary"
                 style={{ 
