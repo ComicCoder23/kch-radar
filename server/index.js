@@ -1,7 +1,6 @@
 
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const express = require('express');
 const cors = require('cors');
 const { Webhook } = require('svix');
@@ -71,32 +70,6 @@ app.use(express.json());
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'KCH Backend is running' });
-});
-
-app.post('/api/create-checkout-session', async (req, res) => {
-  const { priceId, userId } = req.body;
-
-  try {
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price: priceId || 'price_placeholder', // You will replace this with a real Stripe Price ID
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/cancel`,
-      metadata: {
-        userId: userId,
-      },
-    });
-
-    res.json({ id: session.id });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
 });
 
 app.get('/api/signals', async (req, res) => {
