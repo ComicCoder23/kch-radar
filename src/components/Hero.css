@@ -1,23 +1,265 @@
 .hero {
-  padding: 80px 24px;
-  text-align: center;
-  background: #fdfdfc;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 40px 0 24px;
 }
 
-.hero h1 {
+.hero-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.9fr);
+  gap: 24px;
+  padding: 34px;
+  border: 1px solid rgba(255, 236, 190, 0.18);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 36%),
+    radial-gradient(circle at 80% 18%, rgba(124, 58, 237, 0.12), transparent 28%),
+    linear-gradient(140deg, rgba(20, 16, 48, 0.95), rgba(14, 40, 64, 0.88));
+  box-shadow: 0 22px 60px rgba(15, 17, 34, 0.42);
+  overflow: hidden;
+}
+
+.hero-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(255,255,255,0.55) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 28% 30%, rgba(255,255,255,0.35) 0 1.4px, transparent 2px),
+    radial-gradient(circle at 74% 20%, rgba(255,255,255,0.46) 0 2px, transparent 2.8px),
+    radial-gradient(circle at 82% 66%, rgba(255,255,255,0.32) 0 1.6px, transparent 2.4px),
+    radial-gradient(circle at 38% 70%, rgba(255,255,255,0.28) 0 1.5px, transparent 2.2px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.hero-shell::after {
+  content: '';
+  position: absolute;
+  inset: auto -8% -20% -8%;
+  height: 220px;
+  background:
+    radial-gradient(circle at 18% 45%, rgba(34, 197, 94, 0.22) 0 18%, transparent 19%),
+    radial-gradient(circle at 36% 52%, rgba(59, 130, 246, 0.22) 0 18%, transparent 19%),
+    radial-gradient(circle at 62% 40%, rgba(251, 191, 36, 0.2) 0 16%, transparent 17%),
+    radial-gradient(circle at 82% 50%, rgba(16, 185, 129, 0.18) 0 19%, transparent 20%);
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+.hero-fairy-field,
+.hero-copy,
+.hero-panel {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-fairy-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-fairy {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  color: #fef3c7;
+  filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.35));
+  animation: fairy-float 4.8s ease-in-out infinite;
+}
+
+.hero-fairy i {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(255,255,255,0.2) 55%, transparent 70%);
+  animation: fairy-pulse 2.8s ease-in-out infinite;
+}
+
+.hero-fairy b {
+  position: relative;
+  font-size: 14px;
+  transform: translateY(-1px);
+}
+
+.hero-copy h1 {
   font-family: 'Inter', sans-serif;
-  font-size: 3.5rem;
+  font-size: clamp(2.45rem, 4.2vw, 4.55rem);
+  font-weight: 900;
+  color: #f8fffe;
+  margin: 10px 0 16px;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  max-width: 11ch;
+  text-shadow: 0 0 22px rgba(110, 231, 183, 0.12);
+}
+
+.hero-intro,
+.hero-copy p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.08rem;
+  color: #d8ecf5;
+  max-width: 60ch;
+  margin: 0;
+  line-height: 1.65;
+}
+
+.hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #a7f3d0;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 18px;
+  border-radius: 999px;
+  text-decoration: none;
   font-weight: 800;
-  color: #1a1a1a;
-  margin-bottom: 16px;
-  line-height: 1.2;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
 }
 
-.hero p {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.25rem;
-  color: #555;
-  max-width: 600px;
-  margin: 0 auto 32px;
+.hero-button-primary {
+  background: linear-gradient(180deg, #facc15, #d97706);
+  color: #1f1300;
+  box-shadow: 0 10px 24px rgba(217, 119, 6, 0.28);
+}
+
+.hero-button-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fffe;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.hero-tags span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d1fae5;
+  font-size: 0.85rem;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.hero-mini-note {
+  margin-top: 18px;
+  max-width: 56ch;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #eef9ff;
+  font-size: 0.96rem;
+}
+
+.hero-panel {
+  border-radius: 26px;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(16, 23, 44, 0.94), rgba(13, 32, 24, 0.95));
+  color: #eef8f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+.hero-panel-label {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #fde68a;
+}
+
+.hero-panel ul {
+  margin: 16px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+  line-height: 1.55;
+  color: #d7eadc;
+}
+
+.hero-panel-bottom {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.shire-ambience-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: start;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(250, 204, 21, 0.28);
+  background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.08));
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.24);
+}
+
+.shire-ambience-toggle:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.shire-ambience-toggle-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fde68a;
+  box-shadow: 0 0 0 6px rgba(253, 230, 138, 0.15);
+}
+
+.hero-panel-note {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  color: #d8ebdf;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+@keyframes fairy-float {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -10px, 0) scale(1.08); }
+}
+
+@keyframes fairy-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.35); }
+}
+
+@media (max-width: 900px) {
+  .hero-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy h1 {
+    max-width: 14ch;
+  }
 }

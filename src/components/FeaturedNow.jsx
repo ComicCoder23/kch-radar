@@ -4,7 +4,7 @@ export default function FeaturedNow({ items = [], sourceLabel = '', onItemClick,
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '16px', marginBottom: '24px' }}>
         <div>
           <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--secondary)', fontWeight: 700 }}>
-            <span className="status-indicator"></span> Active Scan
+            <span className="status-indicator"></span> What’s on now
           </div>
           <h2 style={{ margin: '6px 0 0', fontSize: '32px', fontWeight: 800 }}>Featured Now</h2>
         </div>

@@ -44,7 +44,7 @@ app.post('/api/webhooks/clerk', express.raw({ type: 'application/json' }), async
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature,
     });
-  } catch (err) {
+  } catch {
     return res.status(400).json({ error: 'Invalid signature' });
   }
 
@@ -53,8 +53,11 @@ app.post('/api/webhooks/clerk', express.raw({ type: 'application/json' }), async
 
   if (eventType === 'user.created' || eventType === 'user.updated') {
     const { email_addresses, first_name, last_name } = evt.data;
-    const email = email_addresses[0].email_address;
-    const name = `${first_name} ${last_name}`.trim();
+    const email = email_addresses?.[0]?.email_address;
+    if (!email) {
+      return res.status(200).json({ success: true, skipped: 'No email address in Clerk payload' });
+    }
+    const name = `${first_name || ''} ${last_name || ''}`.trim();
 
     await prisma.user.upsert({
       where: { id: id },

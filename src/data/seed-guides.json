@@ -1,22 +1,22 @@
 [
   {
-    "title": "Roman & Industrial Layers",
-    "badge": "badge-sandstone",
-    "desc": "Discover the UNESCO Antonine Wall frontier and the deep industrial history of the canal and iron foundries."
-  },
-  {
-    "title": "Civic & Cultural Hubs",
-    "badge": "badge-civic",
-    "desc": "Explore core landmarks like the Auld Kirk Museum, Town Hall, and William Patrick Library."
-  },
-  {
-    "title": "Community & Fellowship",
-    "badge": "badge-fellowship",
-    "desc": "Connect with local networks, Men's Sheds, support groups, and the active local volunteer infrastructure."
-  },
-  {
-    "title": "Canal & Marina Life",
+    "title": "Canal Towpath Walks",
     "badge": "badge-canal",
-    "desc": "Experience the vibrant leisure activities and historic pathways along the Forth & Clyde Canal corridor."
+    "desc": "Flat, easy walking along the Forth & Clyde Canal from Kirkintilloch toward Bishopbriggs, Kilsyth, and the wider towpath network."
+  },
+  {
+    "title": "Town Hall to Auld Kirk Loop",
+    "badge": "badge-civic",
+    "desc": "A small town-centre wander linking Kirkintilloch Town Hall, Cowgate, the library, and the Auld Kirk Museum heritage cluster."
+  },
+  {
+    "title": "Antonine Wall Heritage Line",
+    "badge": "badge-sandstone",
+    "desc": "Follow the Roman frontier through the local landscape and anchor the site in the area’s deep history."
+  },
+  {
+    "title": "Marina & Waterside Days",
+    "badge": "badge-fellowship",
+    "desc": "Bring in the calmer side of Kirkintilloch with Auchinstarry Marina, waterside pauses, and easy nature stops."
   }
 ]

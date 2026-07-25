@@ -1,9 +1,10 @@
-import { SignedIn, SignedOut, useUser } from "@clerk/clerk-react";
 import { useState } from "react";
 import axios from "axios";
+import { SignedIn, SignedOut } from "@clerk/clerk-react";
+
+const API_BASE = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '');
 
 export default function SubmitSignalForm() {
-  const { user } = useUser();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [touched, setTouched] = useState({});
@@ -30,7 +31,12 @@ export default function SubmitSignalForm() {
       date: `${formData.date} // ${formData.startTime} - ${formData.endTime}`.trim()
     };
     try {
-      await axios.post("http://localhost:5000/api/signals", payload);
+      if (!API_BASE) {
+        setError("Signal submission is disabled on the hosted demo.");
+        return;
+      }
+
+      await axios.post(`${API_BASE}/api/signals`, payload);
       setSubmitted(true);
     } catch (error) {
       console.error("Error submitting signal:", error);
@@ -70,21 +76,21 @@ export default function SubmitSignalForm() {
     <section style={{ padding: '24px 0 8px' }}>
       <div className="radar-card" style={{ padding: '32px', fontFamily: 'Inter, sans-serif' }}>
         <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--kch-text-sub)', fontWeight: 700 }}>
-           System Intake
+           Submit an update
         </div>
-        <h2 style={{ margin: '6px 0 16px', fontSize: '32px', fontWeight: 800 }}>Broadcast Signal</h2>
+        <h2 style={{ margin: '6px 0 16px', fontSize: '32px', fontWeight: 800 }}>Share something local</h2>
         
         <SignedOut>
           <p style={{ color: 'var(--kch-text-sub)', maxWidth: '720px' }}>
-            Local organisers and community groups can broadcast events to the radar. 
-            <strong> Please Sign In to transmit a signal.</strong>
+            Local organisers and community groups can add an update to KCH.
+            <strong> Please sign in to submit.</strong>
           </p>
         </SignedOut>
 
         <SignedIn>
           {submitted ? (
             <div style={{ padding: '20px', background: 'rgba(45, 106, 79, 0.1)', color: 'var(--kch-campsie-green)', borderRadius: '8px', border: '1px solid rgba(45, 106, 79, 0.2)' }}>
-              Transmission Received. Your signal is now live on the G66 radar.
+              Update received. Your signal is now live on KCH.
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '24px' }}>
@@ -144,7 +150,7 @@ export default function SubmitSignalForm() {
                   opacity: loading ? 0.7 : 1
                 }}
               >
-                {loading ? "TRANSMITTING SIGNAL..." : "BROADCAST SIGNAL"}
+                {loading ? "SENDING UPDATE..." : "SUBMIT UPDATE"}
               </button>
             </form>
           )}

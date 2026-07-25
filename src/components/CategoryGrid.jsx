@@ -19,7 +19,7 @@ function buildLiveCategoryCards(liveCards) {
     return {
       id: title,
       title,
-      intro: `${count} INTERCEPTS${townText}`,
+      intro: `${count} items${townText}`,
     };
   });
 }
@@ -31,9 +31,9 @@ export default function CategoryGrid({ liveCards = [], sourceLabel = '' }) {
     <section style={{ padding: '24px 16px', maxWidth: '1200px', margin: '0 auto' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
         <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--kch-text-sub)', fontWeight: 700 }}>
-             Sector Map
+             Browse by category
         </div>
-        <h2 style={{ margin: 0, fontSize: '32px', fontWeight: 800 }}>Browser Taxonomy</h2>
+        <h2 style={{ margin: 0, fontSize: '32px', fontWeight: 800 }}>Browse by category</h2>
         <div className="mono" style={{ color: 'var(--kch-text-sub)', fontSize: '13px' }}>{sourceLabel}</div>
       </div>
       <div style={{ 

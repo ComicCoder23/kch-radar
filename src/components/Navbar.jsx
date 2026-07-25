@@ -39,12 +39,13 @@ export default function Navbar() {
             fontSize: '18px'
           }}>K</div>
           <div style={{ fontWeight: 800, fontSize: '1.25rem', color: '#0f172a', letterSpacing: '-0.02em' }}>
-            Kirky Hub <span style={{ color: '#2563eb', fontWeight: 500, fontSize: '0.9rem', marginLeft: '4px' }}>// G66 Area</span>
+            KCH Radar <span style={{ color: '#2563eb', fontWeight: 500, fontSize: '0.9rem', marginLeft: '4px' }}>// Kirkintilloch + G66</span>
           </div>
         </Link>
 
         <div style={{ display: 'flex', gap: '24px', marginLeft: '12px' }}>
-          <Link to="/" style={navLinkStyle} onMouseOver={(e) => e.target.style.color = '#0f172a'} onMouseOut={(e) => e.target.style.color = '#64748b'}>Dashboard</Link>
+          <Link to="/" style={navLinkStyle} onMouseOver={(e) => e.target.style.color = '#0f172a'} onMouseOut={(e) => e.target.style.color = '#64748b'}>Home</Link>
+          <Link to="/report" style={navLinkStyle} onMouseOver={(e) => e.target.style.color = '#0f172a'} onMouseOut={(e) => e.target.style.color = '#64748b'}>What this is</Link>
           <Link to="/signals" style={navLinkStyle} onMouseOver={(e) => e.target.style.color = '#0f172a'} onMouseOut={(e) => e.target.style.color = '#64748b'}>Signals</Link>
           <Link to="/submit" style={navLinkStyle} onMouseOver={(e) => e.target.style.color = '#0f172a'} onMouseOut={(e) => e.target.style.color = '#64748b'}>Submit</Link>
         </div>

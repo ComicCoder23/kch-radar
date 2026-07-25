@@ -1,5 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
+import ShireJourney from '../components/ShireJourney';
+import ShireMap from '../components/ShireMap';
+import NeighbourhoodHighlights from '../components/NeighbourhoodHighlights';
 import FeaturedNow from '../components/FeaturedNow';
 import HiddenOpportunities from '../components/HiddenOpportunities';
 import LocalSignalsFeed from '../components/LocalSignalsFeed';
@@ -9,7 +13,8 @@ import WeeklyDigest from '../components/WeeklyDigest';
 import SubmitSignalForm from '../components/SubmitSignalForm';
 import { mockQueueData } from '../data/mockQueueData';
 
-const FEED_URL = 'http://localhost:5000/api/signals';
+const API_BASE = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '');
+const FEED_URL = API_BASE ? `${API_BASE}/api/signals` : '';
 const FALLBACK_FEED_URL = 'https://script.googleusercontent.com/macros/echo?user_content_key=AWDtjMUTTIvpYHgTtw_ABwX6BNs-KR0I96FG1ZHJfsshTrQR105I7nhFo8FM5zTk8sOl7nuiYp5uObMmez5Una1oT-nGxujohtCaOU1ZEJ1Lxirf1SPmbFefflyHzDF-HRB4A2sw3mXild66KwaxBVhTdku-o9Ue1IThMtvRFQG_VjiofK8UFUpoIhmA6dG6cMncGRUnETK6vr-AnK8n9ElpFSAPAhGVTlEBOUgbZIu_lqZHfHywFXYjUP0dYtwcDkM8v2j1b64Z_Fr1HtTTr5kUnFzjIZZwwQ&lib=MUfpMO9oVaFg0Tp3KTWeHktTQ8ws31GAd';
 
 const pageStyle = {
@@ -20,6 +25,24 @@ const pageStyle = {
   color: '#111827',
   lineHeight: 1.5,
 };
+
+const quickStartCards = [
+  {
+    to: '/report',
+    title: 'Start here',
+    text: 'Read the plain-English report that explains what KCH is, who it is for, and what it is selling.',
+  },
+  {
+    to: '/signals',
+    title: 'Browse updates',
+    text: 'See current local items and what is happening right now.',
+  },
+  {
+    to: '/submit',
+    title: 'Add an update',
+    text: 'If you are signed in, send a local signal into the feed.',
+  },
+];
 
 function normalizeFeedItem(item) {
   return {
@@ -59,18 +82,18 @@ export default function HomePage() {
   useEffect(() => {
     async function loadFeed() {
       try {
-        // Try local DB first
-        const localResponse = await fetch(FEED_URL);
-        if (localResponse.ok) {
-          const localData = await localResponse.json();
-          if (localData && localData.length > 0) {
-            setFeedData({ cards: localData });
-            setIsLiveLocal(true);
-            return;
+        if (FEED_URL) {
+          const localResponse = await fetch(FEED_URL);
+          if (localResponse.ok) {
+            const localData = await localResponse.json();
+            if (localData && localData.length > 0) {
+              setFeedData({ cards: localData });
+              setIsLiveLocal(true);
+              return;
+            }
           }
         }
 
-        // Fallback to Google Sheets
         const response = await fetch(FALLBACK_FEED_URL, { method: 'GET' });
         if (!response.ok) {
           throw new Error(`Feed request failed with ${response.status}`);
@@ -134,6 +157,25 @@ export default function HomePage() {
   return (
     <div style={pageStyle}>
       <Hero />
+
+      <section className="radar-card" style={{ marginTop: '24px', padding: '28px' }}>
+        <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--kch-campsie-green)', fontWeight: 700, marginBottom: '8px' }}>Start here</div>
+        <h2 style={{ fontSize: '32px', fontWeight: 800, margin: '0 0 16px', color: 'var(--kch-primary-text)' }}>Choose your next step</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+          {quickStartCards.map((card) => (
+            <Link key={card.to} to={card.to} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div style={{ height: '100%', padding: '18px', border: '1px solid var(--kch-border)', borderRadius: '18px', background: '#fff' }}>
+                <h3 style={{ margin: '0 0 8px', fontSize: '18px', color: 'var(--kch-primary-text)' }}>{card.title}</h3>
+                <p style={{ margin: 0, color: 'var(--kch-text-sub)', lineHeight: 1.6 }}>{card.text}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <ShireJourney />
+      <ShireMap />
+      <NeighbourhoodHighlights />
       <FeaturedNow items={featuredItems} sourceLabel={featuredSourceLabel} />
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '40px', marginTop: '40px' }}>
         <HiddenOpportunities items={liveOpportunities} sourceLabel={opportunitySourceLabel} />

@@ -11,7 +11,7 @@ function normalizeSignal(item, index) {
     trustLevel: item.trustLevel || 'Verified',
     freshnessLevel: item.freshnessLevel || 'Just now',
     date: item.freshnessLevel || 'Just now',
-    ctaText: 'INTERCEPT',
+    ctaText: 'Open',
     link: '#',
   };
 }
@@ -46,7 +46,7 @@ export default function LocalSignalsFeed({ items = seedSignals, sourceLabel = 'K
     <section style={{ padding: '24px 16px', maxWidth: '1200px', margin: '0 auto' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
         <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--kch-text-sub)', fontWeight: 600 }}>
-             Local Discovery
+             Latest local updates
         </div>
         <h2 style={{ margin: 0, fontSize: '32px', fontWeight: 800 }}>Signals Feed</h2>
         <div style={{ color: 'var(--kch-text-sub)', fontSize: '13px' }}>{sourceLabel}</div>
@@ -120,7 +120,7 @@ export default function LocalSignalsFeed({ items = seedSignals, sourceLabel = 'K
                 }}
                 onClick={(e) => { e.stopPropagation(); item.link && window.open(item.link, '_blank'); }}
               >
-                {item.ctaText}
+                Open
               </button>
             </article>
           ))

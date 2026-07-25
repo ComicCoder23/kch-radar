@@ -18,9 +18,9 @@ export default function HiddenOpportunities({ items = [], sourceLabel = '', onIt
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '16px', marginBottom: '24px' }}>
         <div>
           <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--accent)', fontWeight: 700 }}>
-             Priority Layer
+             Opportunities
           </div>
-          <h2 style={{ margin: '6px 0 0', fontSize: '32px', fontWeight: 800 }}>Hidden Opportunities</h2>
+          <h2 style={{ margin: '6px 0 0', fontSize: '32px', fontWeight: 800 }}>Opportunities and connections</h2>
         </div>
         <div className="mono" style={{ color: 'var(--muted)', fontSize: '13px' }}>{sourceLabel}</div>
       </div>

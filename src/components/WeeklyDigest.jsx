@@ -11,8 +11,8 @@ export default function WeeklyDigest({ items = digestItems }) {
     <section className="weekly-digest-section" style={{ padding: '40px 0', borderTop: '1px solid var(--kch-border)', marginTop: '40px' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
         <div>
-          <h2 style={{ fontSize: '20px', fontWeight: 800, margin: 0 }}>Weekly Local Digest</h2>
-          <p style={{ color: 'var(--kch-text-sub)', margin: '4px 0 0', fontSize: '14px' }}>Latest verified signals from our community.</p>
+          <h2 style={{ fontSize: '20px', fontWeight: 800, margin: 0 }}>This week</h2>
+          <p style={{ color: 'var(--kch-text-sub)', margin: '4px 0 0', fontSize: '14px' }}>A short round-up of current local items.</p>
         </div>
         <span className="badge badge-canal" style={{ fontSize: '10px' }}>RECENTLY VERIFIED</span>
       </div>

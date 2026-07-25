@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
+import ReportPage from './pages/ReportPage';
 import SignalsPage from './pages/SignalsPage';
 import GuidesPage from './pages/GuidesPage';
 import SubmitPage from './pages/SubmitPage';
@@ -16,6 +17,7 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/report" element={<ReportPage />} />
           <Route path="/signals" element={<SignalsPage />} />
           <Route path="/guides" element={<GuidesPage />} />
           <Route path="/venues" element={<VenuesPage />} />

@@ -6,7 +6,7 @@ import './index.css';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
-function DemoAuthFallback() {
+export function DemoAuthFallback() {
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-10 text-slate-100">
       <section className="mx-auto max-w-3xl rounded-3xl border border-slate-800 bg-slate-900/80 p-8 shadow-2xl">
