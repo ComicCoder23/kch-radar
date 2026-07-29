@@ -7,15 +7,22 @@ export default function Navbar() {
     color: '#64748b',
     fontWeight: 600,
     fontSize: '14px',
-    transition: 'color 0.2s'
+    transition: 'color 0.2s',
+    /* 2026-07-29 tap-target floor: audit measured "What this is" at 42x48px */
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '44px',
+    minWidth: '44px'
   };
 
   return (
     <nav style={{
       display: 'flex',
+      flexWrap: 'wrap', /* 2026-07-29: page scrollWidth was 473px vs 390px viewport - let the bar wrap instead of forcing width */
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '1.25rem 2rem',
+      padding: '1.25rem 1rem',
       background: 'rgba(255, 255, 255, 0.8)',
       backdropFilter: 'blur(12px)',
       borderBottom: '1px solid #e2e8f0',
@@ -24,7 +31,7 @@ export default function Navbar() {
       zIndex: 100,
       marginBottom: '2rem'
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px 32px' }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
           <div style={{ 
             width: '32px', 
@@ -43,7 +50,7 @@ export default function Navbar() {
           </div>
         </Link>
 
-        <div style={{ display: 'flex', gap: '24px', marginLeft: '12px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 24px', marginLeft: '12px' }}>
           <Link to="/" style={navLinkStyle} onMouseOver={(e) => e.target.style.color = '#0f172a'} onMouseOut={(e) => e.target.style.color = '#64748b'}>Home</Link>
           <Link to="/report" style={navLinkStyle} onMouseOver={(e) => e.target.style.color = '#0f172a'} onMouseOut={(e) => e.target.style.color = '#64748b'}>What this is</Link>
           <Link to="/signals" style={navLinkStyle} onMouseOver={(e) => e.target.style.color = '#0f172a'} onMouseOut={(e) => e.target.style.color = '#64748b'}>Signals</Link>

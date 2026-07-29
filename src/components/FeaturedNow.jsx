@@ -1,7 +1,7 @@
 export default function FeaturedNow({ items = [], sourceLabel = '', onItemClick, loading = false }) {
   return (
     <section style={{ padding: '24px 0' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '16px', marginBottom: '24px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', alignItems: 'end', gap: '16px', marginBottom: '24px' }}>
         <div>
           <div style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--secondary)', fontWeight: 700 }}>
             <span className="status-indicator"></span> What’s on now

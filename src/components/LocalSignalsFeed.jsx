@@ -51,13 +51,13 @@ export default function LocalSignalsFeed({ items = seedSignals, sourceLabel = 'K
         <h2 style={{ margin: 0, fontSize: '32px', fontWeight: 800 }}>Signals Feed</h2>
         <div style={{ color: 'var(--kch-text-sub)', fontSize: '13px' }}>{sourceLabel}</div>
         
-        <div style={{ display: 'flex', gap: '16px', marginTop: '16px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginTop: '16px' }}>
             <input 
                 type="text" 
                 placeholder="Search signals..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                style={{ padding: '8px', borderRadius: '4px', border: '1px solid var(--kch-border)', background: 'transparent', color: 'white' }}
+                style={{ padding: '8px', borderRadius: '4px', border: '1px solid var(--kch-border)', background: 'transparent', color: 'white', minWidth: 0, maxWidth: '100%' }}
             />
             <select 
                 value={categoryFilter}
