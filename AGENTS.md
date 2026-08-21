@@ -119,3 +119,21 @@ Read these first when touching this project:
 - **Vite 8 peer conflict** with `@vitejs/plugin-react` is a known pre-existing issue. Do not attempt to resolve it without explicit instruction — it is not blocking builds.
 - **Sober filter** must remain a first-class UI element, not hidden behind advanced search. It is the product's ethical differentiator.
 - **KCH Radar Master.csv** in the root is a data export/reference — not a source of truth for the DB schema.
+
+---
+
+## Agent skills
+
+Installed 2026-08-21 from the AAL-owned Matt Pocock skill library (`AI_Control_Tower/skills/matt-pocock/`, MIT). Loadout per `SKILLS_AUDIT_MATT_POCOCK_2026-08-21.md` §5: tdd, diagnose, to-issues, zoom-out, setup-pre-commit, git-guardrails (AAL-tweaked), setup-matt-pocock-skills.
+
+### Issue tracker
+
+Issues and PRDs live in this repo's GitHub Issues (`ComicCoder23/kch-radar`, via `gh`). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default canonical vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` + `docs/adr/` at repo root, created lazily by `/grill-with-docs`. See `docs/agents/domain.md`.
